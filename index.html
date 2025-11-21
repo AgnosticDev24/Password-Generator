@@ -13,21 +13,26 @@
     <!-- Link to external CSS file -->
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <div class="container">
         <h2 class="heading-text">Password Generator</h2>
-        
+
         <div class="content-area">
-            <!-- Result Box -->
-            <div class="result-box">
+            <!-- Result Box: ID added for JS listener -->
+            <div class="result-box" id="resultBox">
                 <span id="result">Click Generate</span>
+                <!-- SVG Icon for Copy -->
+                <svg id="copyIcon" class="copy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
             </div>
-            
+
             <!-- Length Box -->
             <div class="length-box">
-                <p class="badge">Length <span id="lengthText">4</span></p>
-                <div class="length-choices-box">
+                <p class="badge">Length <span id="lengthText" class="length-indicator">4</span></p>
+                <!-- Length Choices Box: ID added for JS listener -->
+                <div class="length-choices-box" id="lengthOptionsContainer">
                     <span class="length-option active" data-length="4">4</span>
                     <span class="length-option" data-length="8">8</span>
                     <span class="length-option" data-length="12">12</span>
@@ -35,29 +40,44 @@
                     <span class="length-option" data-length="20">20</span>
                 </div>
             </div>
-            
+
             <!-- Settings Box -->
             <div class="settings-box">
-                <p class="badge" style="padding-left: 0;">Settings</p>
-                
+                <p class="badge" style="padding-left: 0;">Character Sets</p>
+
+                <!-- Uppercase is always included but styled as a toggle -->
                 <div class="option-box">
-                    <h4 class="option-title">Include Numbers</h4>
-                    <div class="option-button" id="btnNumbers">
-                        <span></span>
+                    <h4 class="option-title">Include Uppercase (A-Z)</h4>
+                    <div class="toggle-switch active" id="btnUppercase" disabled>
+                        <span class="toggle-slider"></span>
                     </div>
                 </div>
-                
+
                 <div class="option-box">
-                    <h4 class="option-title">Include Symbols</h4>
-                    <div class="option-button" id="btnSymbols">
-                        <span></span>
+                    <h4 class="option-title">Include Numbers (0-9)</h4>
+                    <!-- ID for JS listener -->
+                    <div class="toggle-switch" id="btnNumbers" data-active="false">
+                        <span class="toggle-slider"></span>
+                    </div>
+                </div>
+
+                <div class="option-box">
+                    <h4 class="option-title">Include Symbols (!@#$)</h4>
+                    <!-- ID for JS listener -->
+                    <div class="toggle-switch" id="btnSymbols" data-active="false">
+                        <span class="toggle-slider"></span>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Generate Button -->
-        <button class="generateBtn" id="generateBtn">Generate Password</button>
+        <button class="generate-btn" id="generateBtn">Generate Password</button>
+
+        <!-- Message Box for copy confirmation (hidden by default) -->
+        <div id="messageBox" class="message-box">
+            Copied to clipboard!
+        </div>
     </div>
 
     <!-- Link to external JS file -->
