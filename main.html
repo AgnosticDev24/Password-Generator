@@ -1,60 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Password Generator</title>
-
-
-    <!-- Google Fonts: Inter -->
     
-    <link rel="stylesheet" href="styles.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <!-- Container -->
     <div class="container">
-        <!-- Heading Text -->
         <h2 class="heading-text">Password Generator</h2>
-        <!-- Content Area -->
+        
         <div class="content-area">
-            <div class="result-box"> <!-- Result Box -->
-                <span>xdrt</span>
+            <!-- Result Box -->
+            <div class="result-box">
+                <span id="result">Click Generate</span>
             </div>
-            <div class="length-box"> <!-- Length Box -->
-                <p class="badge">Length <span>4</span></p> <!-- Box Title -->
+            
+            <!-- Length Box -->
+            <div class="length-box">
+                <p class="badge">Length <span id="lengthText">4</span></p>
                 <div class="length-choices-box">
-                    <span class="active">4</span>
-                    <span>8</span>
-                    <span>16</span>
-                    <span>20</span>
-                    <span>26</span>
+                    <span class="length-option active" data-length="4">4</span>
+                    <span class="length-option" data-length="8">8</span>
+                    <span class="length-option" data-length="12">12</span>
+                    <span class="length-option" data-length="16">16</span>
+                    <span class="length-option" data-length="20">20</span>
                 </div>
             </div>
-            <div class="settings-box"> <!-- Settings Box -->
-                <p class="badge">Settings</p> <!-- Box Title -->
+            
+            <!-- Settings Box -->
+            <div class="settings-box">
+                <p class="badge" style="padding-left: 0;">Settings</p>
+                
                 <div class="option-box">
                     <h4 class="option-title">Include Numbers</h4>
-                    <div class="option-button">
-                        <span id="include_numbers" data-value="1234567890"></span>
+                    <div class="option-button" id="btnNumbers">
+                        <span></span>
                     </div>
                 </div>
+                
                 <div class="option-box">
                     <h4 class="option-title">Include Symbols</h4>
-                    <div class="option-button">
-                        <span id="include_symbols" data-value="@#$%&!-_~?+"></span>
+                    <div class="option-button" id="btnSymbols">
+                        <span></span>
                     </div>
                 </div>
             </div>
         </div>
+        
         <!-- Generate Button -->
-        <button class="generateBtn">Generate</button>
+        <button class="generateBtn" id="generateBtn">Generate Password</button>
     </div>
-    <!-- End Container -->
 
-
+    <!-- Link to external JS file -->
     <script src="script.js"></script>
 </body>
-
 </html>
