@@ -83,7 +83,6 @@ body {
 }
 
 /* Length Box */
-.content-area .length-box {}
 
 .content-area .length-box .length-choices-box {
     /* Length choices Box */
@@ -111,8 +110,7 @@ body {
     background-color: var(--lightGray-color);
 }
 
-/* Settings Box */
-.settings-box {}
+
 
 .settings-box .option-box {
     /* Options */
