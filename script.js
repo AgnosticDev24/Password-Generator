@@ -4,9 +4,9 @@ const allLengthChoices = document.querySelectorAll('.length-choices-box span');
 const lengthBadge = document.querySelector('.length-box .badge span');
 const generateBtn = document.querySelector('.generateBtn');
 
-// Select the BUTTON DIVS, not the empty spans inside them
-const btnNumbers = document.querySelector('#include_numbers').parentElement;
-const btnSymbols = document.querySelector('#include_symbols').parentElement;
+// Select the BUTTON DIVS (The parent containers)
+const btnNumbers = document.querySelector('#btn_numbers');
+const btnSymbols = document.querySelector('#btn_symbols');
 
 // --- Configuration Data ---
 const letters = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
@@ -34,7 +34,7 @@ allLengthChoices.forEach(choice => {
 });
 
 // 2. Settings Toggles (Numbers & Symbols)
-// We attach the listener to the button container so it is easy to click
+// We create a helper function to toggle the 'active' class
 function toggleButton(element) {
     element.classList.toggle('active');
 }
@@ -49,7 +49,7 @@ generateBtn.addEventListener('click', generatePassword);
 
 function generatePassword() {
     // 1. Build the pool of characters based on CURRENT active classes
-    let currentPool = letters; // Always include letters
+    let currentPool = letters; // Always start with letters
     
     // Check if the buttons have the class 'active'
     if (btnNumbers.classList.contains('active')) {
@@ -70,3 +70,6 @@ function generatePassword() {
     // 3. Display Result
     resultBoxDom.innerText = result;
 }
+
+// Generate a password on initial load so the box isn't empty
+generatePassword();
