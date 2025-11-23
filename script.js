@@ -1,113 +1,72 @@
-// Result Box 
-let resultBoxDom = document.querySelector('.result-box span');
+// --- DOM Elements ---
+const resultBoxDom = document.querySelector('.result-box span');
+const allLengthChoices = document.querySelectorAll('.length-choices-box span');
+const lengthBadge = document.querySelector('.length-box .badge span');
+const generateBtn = document.querySelector('.generateBtn');
 
-// All Length Choices Span
-let allLengthChoices = document.querySelectorAll('.length-choices-box span');
+// Select the BUTTON DIVS, not the empty spans inside them
+const btnNumbers = document.querySelector('#include_numbers').parentElement;
+const btnSymbols = document.querySelector('#include_symbols').parentElement;
 
-// Length Badge
-let lengthBadge = document.querySelector('.length-box .badge span');
+// --- Configuration Data ---
+const letters = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+const numbers = '1234567890';
+const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
 
-// Settings Options Buttons
-let includeNumbers = document.querySelector('#include_numbers');
-let includeSymbols = document.querySelector('#include_symbols');
+// Default State
+let passwordLength = 4;
 
-// Generate Button
-let generateBtn = document.querySelector('.generateBtn');
+// --- Event Listeners ---
 
-// - - - - - Sub Variables - - - - - //
+// 1. Length Selection
+allLengthChoices.forEach(choice => {
+    choice.addEventListener('click', (e) => {
+        // Remove active class from all
+        allLengthChoices.forEach(el => el.classList.remove('active'));
+        
+        // Add active class to clicked element
+        e.target.classList.add('active');
+        
+        // Update state
+        passwordLength = parseInt(e.target.innerText);
+        lengthBadge.innerText = passwordLength;
+    });
+});
 
-// Charaters
-let characters = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+// 2. Settings Toggles (Numbers & Symbols)
+// We attach the listener to the button container so it is easy to click
+function toggleButton(element) {
+    element.classList.toggle('active');
+}
 
-// Characters Length
-let charactersLength = 4;
+btnNumbers.addEventListener('click', () => toggleButton(btnNumbers));
+btnSymbols.addEventListener('click', () => toggleButton(btnSymbols));
 
-// - - - - - Events - - - - - //
-
-// When Click On Generate Button Call ( Generate Password ) Function
+// 3. Generate Password
 generateBtn.addEventListener('click', generatePassword);
 
-// When Click On include Numbers And Include Symbols Buttons Call ( Settings ) Function
-includeNumbers.addEventListener('click', settings);
-includeSymbols.addEventListener('click', settings);
+// --- Core Function ---
 
-// - - - - - Functions - - - - - //
-
-// Length Choices Function
-(function lengthChoices() {
-  // Loop On All The Choices
-  allLengthChoices.forEach(choice => {
-
-    // When Click On Any Choice
-    choice.addEventListener('click', (e) => {
-      // Call ( Remove All Actives choices ) Function
-      removeAllActive(allLengthChoices);
-      // Set The Target Element Inner-Text Into The charactersLength After The Confert To Number
-      charactersLength = parseInt(e.target.innerText);
-      // Set The Target Element Inner Text Into The lengthBadge
-      lengthBadge.innerText = e.target.innerText;
-      // Add Active Class On Target Element
-      e.target.classList.add('active');
-    });
-
-  });
-})();
-
-// Remove All Actives choices Function
-function removeAllActive(targetElements) {
-  // Loop On All Target targetElements
-  targetElements.forEach(activeEle => {
-    // Remove Each Active From The activeEle ( targetElements )
-    activeEle.classList.remove('active');
-  });
-};
-
-// Settings Functions
-function settings(event) {
-  // Event Target Element
-  let targetOption = event.target;
-  // Targe Parent Element
-  let targetParentElement = targetOption.parentElement;
-  // Toggle Class Active On The Target-Option Parent Element
-  targetParentElement.classList.toggle('active');
-  // Check If The Target Parent Element Is Contains Class ( Active ) Return True Else Return False
-  let isParentActive = (targetParentElement.classList.contains('active') ? true : false);
-
-  // If The Target-Option Is Include-Numbers Button
-  if(targetOption == includeNumbers){
-    // If The Target Parent Element Is Active
-    if(isParentActive){
-      // Push The Target Option Data Into The Characters
-      characters += targetOption.dataset.value;
-    }else{ // else
-      // Remove All The Numbers From The Characters
-      characters = characters.replace(/[0-9]/gi, '');
-    };
-  }else{ // Else He Is Not Include-Numbers Button
-    // If The Target Parent Element Is Active
-    if(isParentActive){
-      // Push The Target Option Data Into The Characters
-      characters += targetOption.dataset.value;
-    }else{  // else
-      // Remove All The Symbols From The Characters
-      characters = characters.replace(/[\W_]/gi, '');
-    };
-  };
-};
-
-// Generate Password Function
 function generatePassword() {
-  // Result
-  let result = '';
+    // 1. Build the pool of characters based on CURRENT active classes
+    let currentPool = letters; // Always include letters
+    
+    // Check if the buttons have the class 'active'
+    if (btnNumbers.classList.contains('active')) {
+        currentPool += numbers;
+    }
+    
+    if (btnSymbols.classList.contains('active')) {
+        currentPool += symbols;
+    }
 
-  // Loop On All The CharachersLength Variable
-  for(var i = 0; i < charactersLength; i++){
-    // Get Random Number From The Characters Variable
-    let randomNumber = Math.floor(Math.random() * characters.length);
-    // Get Random Character From The Characters Variable Every Loop Length And Push Him Into The Result
-    result += characters.slice(randomNumber, randomNumber + 1);
-  };
-  
-  // Append The Result Data Inside The ( resultBoxDom ) dOM
-  resultBoxDom.innerHTML = result;
-};
+    // 2. Generate the random string
+    let result = '';
+    for (let i = 0; i < passwordLength; i++) {
+        const randomNumber = Math.floor(Math.random() * currentPool.length);
+        result += currentPool.charAt(randomNumber);
+    }
+
+    // 3. Display Result
+    resultBoxDom.innerText = result;
+}
