@@ -24,105 +24,96 @@ body {
     align-items: center;
 }
 
+/* End Main Css Style */
+
 /* Container */
 .container {
     position: relative;
     width: 430px;
-    min-height: 550px;
+    min-height: 600px;
     background-color: var(--white-color);
-    color: var(--primary-text-color); 
+    color: var(--text-color);
     padding: 20px;
-    border: 1px solid var(--container-border-color); 
+    border: 1px solid var(--conatiner-border-color);
     border-width: 19px 12px;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 .container .heading-text {
+    /* Heading Text*/
     text-align: center;
-    font-size: 32px;
-    font-weight: 600;
+    font-size: 36px;
+    font-weight: 500;
     margin: 10px 0 25px;
     color: var(--primary-text-color);
 }
 
-/* Content Area */
+/* Content Area  */
 .content-area {
     position: relative;
 }
 
-.content-area > div {
-    padding: 15px;
+.content-area>div {
+    /* Next Dives */
+    padding: 10px;
     border: 1px solid var(--primary-border-color);
-    margin-bottom: 15px;
-    border-radius: 6px;
+    margin-bottom: 10px;
+    border-radius: 4px;
 }
 
-.content-area > div .badge {
+.content-area>div .badge {
+    /* Badge */
     font-size: 13px;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 600;
     color: #B8B8B8;
-    margin-bottom: 10px;
-    display: block;
+    padding: 0 0 0 10px;
 }
 
-.content-area > div .badge span {
+.content-area>div .badge span {
     color: var(--primary-text-color);
 }
 
 /* Result Box */
 .content-area .result-box {
     text-align: center;
-    font-size: 24px;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    color: #333;
-    background-color: #fafafa;
-    font-weight: bold;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    word-break: break-all;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: var(--primary-text-color);
 }
 
 /* Length Box */
+
 .content-area .length-box .length-choices-box {
+    /* Length choices Box */
     text-align: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10px;
 }
 
 .content-area .length-choices-box span {
+    /* choices Spans */
     display: inline-block;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    border-radius: 4px;
-    border: 1px solid var(--primary-border-color);
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    border-radius: 2px;
+    border: 1px solid var(--primary-text-color);
     cursor: pointer;
-    transition: 0.2s ease-in-out;
-    font-weight: 600;
+    transition: 0.3s ease-in-out;
 }
 
 .content-area .length-choices-box span:hover {
-    border-color: var(--primary-text-color);
+    opacity: 0.7;
 }
 
 .content-area .length-choices-box span.active {
-    background-color: var(--primary-text-color);
-    color: white;
-    border-color: var(--primary-text-color);
+    /* Current Length Span */
+    background-color: var(--lightGray-color);
 }
 
-.settings-box {
-    border: none !important;
-    padding: 0 !important;
-}
+
 
 .settings-box .option-box {
+    /* Options */
     width: 100%;
     height: 70px;
     border: 1px solid var(--primary-border-color);
@@ -131,73 +122,72 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 6px;
+    border-radius: 4px;
     color: var(--primary-text-color);
 }
 
 .settings-box .option-box h4 {
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 18px;
 }
 
 /* Option Button */
 .option-box .option-button {
-    width: 60px;
-    height: 30px;
-    border: 1px solid #ddd;
-    border-radius: 15px;
+    width: 100px;
+    height: 43px;
+    border: 1px solid var(--primary-text-color);
+    border-radius: 5px;
     display: flex;
     align-items: center;
     transition: 0.3s;
-    cursor: pointer;
-    position: relative;
-    background-color: #f1f1f1;
 }
 
 .option-box .option-button.active {
-    background-color: #4CAF50;
-    border-color: #4CAF50;
+    background-color: rgb(235, 232, 232);
 }
 
 .option-box .option-button span {
     display: inline-block;
-    width: 26px;
-    height: 26px;
+    width: 35px;
+    height: 35px;
     background-color: #fff;
+    border: 1px solid var(--primary-text-color);
     border-radius: 50%;
-    position: absolute;
-    left: 1px;
+    margin-left: 4px;
+    cursor: pointer;
     transition: 0.3s;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .option-box .option-button.active span {
-    left: 31px; /* Moves the circle to the right */
+    margin-left: 59px;
+}
+
+.option-box .option-button span:hover {
+    opacity: 0.7;
 }
 
 /* Button */
-.container > button {
-    width: 100%;
+.container>button {
+    position: relative;
+    width: 80%;
     display: block;
     outline: none;
-    padding: 18px 0;
-    margin-top: 20px;
-    background-color: var(--primary-text-color);
-    color: white;
-    border: none;
-    font-size: 16px;
-    letter-spacing: 1px;
-    border-radius: 6px;
+    padding: 15px 0;
+    margin: 50px auto 10px;
+    background-color: var(--conatiner-border-color);
+    border: 1px solid #ddd;
+    font-size: 17px;
+    letter-spacing: 2px;
+    border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
-    font-weight: 600;
-    text-transform: uppercase;
+    overflow: hidden;
 }
 
-.container > button:hover {
-    background-color: #555;
+.container>button:hover {
+    opacity: 0.6;
 }
 
-.container > button:active {
-    transform: scale(0.98);
+.container>button:active {
+    opacity: 1;
 }
